@@ -1,0 +1,47 @@
+.menu,
+.addMenu {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  position: relative;
+  background-color: #ffffff10;
+  color: #ffffffde;
+  border-radius: 14px;
+  padding: 10px 20px;
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+  transition: 0.3s ease-in;
+}
+
+.menu:hover,
+.addMenu:hover {
+  color: #ffffff;
+  background-color: #ffffff25;
+}
+
+.menu:before {
+  content: "🡪";
+  color: #ffffff90;
+  display: flex;
+  visibility: hidden;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #00000020;
+  border-radius: 0 14px 14px 0;
+  transition: 0.2s linear;
+  z-index: -1;
+}
+.menu:hover::before {
+  visibility: visible;
+  width: 40px;
+  right: 0;
+}
