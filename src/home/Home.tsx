@@ -1,3 +1,4 @@
+import MainItems from "../components/mainItems/MainItems";
 import SideMenu from "../components/sideMenu/SideMenu";
 
 const Home = () => {
@@ -8,7 +9,9 @@ const Home = () => {
           <aside className="fixed left-[2%] top-5 bottom-5 w-[20%] aside1">
             <SideMenu />
           </aside>
-          <aside className="fixed left-[24%] top-5 bottom-5 w-[74%] aside2"></aside>
+          <aside className="fixed left-[24%] top-5 bottom-5 w-[74%] aside2">
+            <MainItems />
+          </aside>
         </section>
       </section>
     </>

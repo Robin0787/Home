@@ -22,3 +22,15 @@
   background-repeat: no-repeat;
   border-radius: 20px;
 }
+
+#scrollBar::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+#scrollBar::-webkit-scrollbar-thumb {
+  background-color: #ffffff20;
+  border-radius: 100px;
+}
+#scrollBar::-webkit-scrollbar-track {
+  background-color: transparent;
+}
