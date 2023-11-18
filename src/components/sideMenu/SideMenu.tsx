@@ -70,7 +70,13 @@ const SideMenu = () => {
           </li>
         </ul>
       </article>
-      <div className="h-[10%] w-full bg-[#00000010] rounded-b-[20px]"></div>
+      <div className="h-[10%] w-full bg-[#00000010] rounded-b-[20px]">
+        <div className="flex justify-center items-center p-5">
+          <p className="text-sm text-primary">
+            Rights reserved by <span className="text-white">Robin</span>
+          </p>
+        </div>
+      </div>
     </section>
   );
 };
