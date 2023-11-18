@@ -25,6 +25,7 @@
 
 #scrollBar::-webkit-scrollbar {
   -webkit-appearance: none;
+  width: 10px;
 }
 
 #scrollBar::-webkit-scrollbar-thumb {
@@ -32,5 +33,20 @@
   border-radius: 100px;
 }
 #scrollBar::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Menu scroll bar */
+
+#menuScrollBar::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 5px;
+}
+
+#menuScrollBar::-webkit-scrollbar-thumb {
+  background-color: #ffffff20;
+  border-radius: 100px;
+}
+#menuScrollBar::-webkit-scrollbar-track {
   background-color: transparent;
 }
