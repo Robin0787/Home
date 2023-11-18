@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import fb from "../../assets/logo/fb.webp";
 import github from "../../assets/logo/github.png";
 import google from "../../assets/logo/google.png";
@@ -5,6 +6,12 @@ import youtube from "../../assets/logo/youtube.png";
 import SingleItem from "../SingleItem";
 
 const MainItems = () => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const queryValue = searchParams.get("q");
+
+  console.log(queryValue);
+
   return (
     <section id="scrollBar" className="h-full w-full p-5 overflow-y-auto">
       <section className="mt-5">
