@@ -1,0 +1,48 @@
+import {
+  FaAddressCard,
+  FaCode,
+  FaFolder,
+  FaHome,
+  FaKeyboard,
+  FaPaintBrush,
+  FaPlus,
+  FaRobot,
+  FaShareAlt,
+  FaUser,
+} from "react-icons/fa";
+import { MdFavorite } from "react-icons/md";
+
+import { FaPencil } from "react-icons/fa6";
+
+const GetIcon = ({ iconName, size }: { iconName: string; size: number }) => {
+  switch (iconName) {
+    case "FaAddressCard":
+      return <FaAddressCard size={size} />;
+    case "FaCode":
+      return <FaCode size={size} />;
+    case "FaFolder":
+      return <FaFolder size={size} />;
+    case "FaHome":
+      return <FaHome size={size} />;
+    case "FaKeyboard":
+      return <FaKeyboard size={size} />;
+    case "FaPaintBrush":
+      return <FaPaintBrush size={size} />;
+    case "FaPlus":
+      return <FaPlus size={size} />;
+    case "FaRobot":
+      return <FaRobot size={size} />;
+    case "FaShareAlt":
+      return <FaShareAlt size={size} />;
+    case "FaUser":
+      return <FaUser size={size} />;
+    case "FaPencil":
+      return <FaPencil size={size} />;
+    case "MdFavorite":
+      return <MdFavorite size={size} />;
+    default:
+      return <FaFolder size={size} />;
+  }
+};
+
+export default GetIcon;
