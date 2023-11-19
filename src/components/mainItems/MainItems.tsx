@@ -3,6 +3,7 @@ import SingleItem from "../SingleItem";
 import getWebsites from "./helper/getWebsites.js";
 
 import { useEffect, useState } from "react";
+import ItemsSkeleton from "../ItemsSkeleton/ItemsSkeleton.js";
 
 const data = [
   {
@@ -135,8 +136,11 @@ const MainItems = () => {
     <section id="scrollBar" className="h-full w-full p-5 overflow-y-auto">
       <section className="h-full">
         {loading ? (
-          <section className="h-full w-full bg-[#ffffff10] rounded-[20px] flex justify-center items-center text-white text-xl">
-            <h1>Loading...</h1>
+          <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-5">
+            <ItemsSkeleton />
+            <ItemsSkeleton />
+            <ItemsSkeleton />
+            <ItemsSkeleton />
           </section>
         ) : (
           <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-5">
