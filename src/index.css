@@ -56,6 +56,19 @@
   background-color: transparent;
 }
 
+#listScrollBar::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 5px;
+}
+
+#listScrollBar::-webkit-scrollbar-thumb {
+  background-color: #ffffff20;
+  border-radius: 100px;
+}
+#listScrollBar::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
 /* Name link styles */
 .item-name {
   position: relative;

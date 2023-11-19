@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoAddCircle } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
-import AddItemModal from "../customModal/AddItemModal";
+import AddItemModal from "../addItemModal/AddItemModal";
 
 const MainItemsFooter = () => {
   const location = useLocation();
@@ -21,13 +21,7 @@ const MainItemsFooter = () => {
         <IoAddCircle size={20} />
         <span>Add</span>
       </button>
-      <AddItemModal openModal={modal} setModal={setModal}>
-        <div className="h-full text-center space-y-5">
-          <h1 className="text-3xl text-primary uppercase">
-            {queryValue || "Home"}
-          </h1>
-        </div>
-      </AddItemModal>
+      <AddItemModal openModal={modal} setModal={setModal} />
     </div>
   );
 };
