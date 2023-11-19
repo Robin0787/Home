@@ -19,9 +19,9 @@ const SingleItem = (item: Item) => {
             <img
               src={logo}
               alt="logo"
-              className={`h-10 w-10 bg-[#ffffff30] hover:bg-[#ffffff50] ${
+              className={`h-10 w-10 bg-[#ffffff20] hover:bg-[#ffffff40] ${
                 ring ? "ring-[14px] rounded-full" : "ring-[10px] rounded-[8px]"
-              } ring-[#ffffff30] hover:ring-[#ffffff50] object-cover object-center mx-auto  cursor-pointer duration-300`}
+              } ring-[#ffffff20] hover:ring-[#ffffff40] object-cover object-center mx-auto  cursor-pointer duration-300`}
               onClick={() => {
                 window.open(url);
               }}

@@ -24,6 +24,12 @@
   border-radius: 20px;
 }
 
+#addItemModal {
+  background: url(./assets/cool-background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 #scrollBar::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 10px;
