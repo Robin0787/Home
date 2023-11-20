@@ -48,7 +48,7 @@ const MainItems = () => {
               <ItemsSkeleton loader={true} />
             </section>
           ) : websites?.length > 0 ? (
-            <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-5">
+            <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5">
               {websites?.map((item, index) => (
                 <SingleItem
                   key={index}

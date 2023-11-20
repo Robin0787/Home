@@ -51,7 +51,7 @@ const ListDropdown = ({
           >
             <Listbox.Options
               id="listScrollBar"
-              className="absolute top-10 max-h-44 w-full overflow-auto rounded-md bg-[#00000080] border border-[#ffffff50] text-base shadow-lg sm:text-sm"
+              className="absolute left-full -bottom-16 2xl:-bottom-28 max-h-44 2xl:max-h-64 w-52 overflow-auto rounded-md bg-[#00000080] border border-[#ffffff50] text-base shadow-lg sm:text-sm"
             >
               {items.map((item, itemIndex) => (
                 <Listbox.Option

@@ -73,9 +73,10 @@ const SideMenu = () => {
       </article>
       {/* Footer Section */}
       <div className="h-[10%] w-full bg-[#00000010] rounded-b-[20px]">
-        <div className="flex justify-center items-center p-5">
-          <p className="text-sm text-primary">
-            All rights reserved by <span className="text-white">Robin</span>
+        <div className="flex justify-center items-center h-full">
+          <p className="text-sm 2xl:text-base text-primary">
+            All rights reserved by{" "}
+            <span className="text-white font-semibold">Robin</span>
           </p>
         </div>
       </div>

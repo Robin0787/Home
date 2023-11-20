@@ -45,3 +45,12 @@
   width: 40px;
   right: 0;
 }
+
+@media screen and (width >= 1536px) {
+  .menu,
+  .addMenu {
+    font-size: 18px;
+    padding: 15px 25px;
+    gap: 15px;
+  }
+}

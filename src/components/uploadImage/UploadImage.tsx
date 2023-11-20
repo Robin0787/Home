@@ -5,7 +5,7 @@ const UploadImage = ({ handleImageChange, image }) => {
     <div className="flex items-center justify-center w-full relative">
       <label
         htmlFor="dropzone-file"
-        className="flex flex-col items-center justify-center w-full h-[120px] lg:h-[150px] border-2 border-[#808080] border-dashed hover:border-gray-300 rounded-lg cursor-pointer bg-transparent hover:bg-inherit duration-500 group"
+        className="flex flex-col items-center justify-center w-full h-[120px] lg:h-[150px] 2xl:h-[170px] border-2 border-[#808080] border-dashed hover:border-gray-300 rounded-lg cursor-pointer bg-transparent hover:bg-inherit duration-500 group"
       >
         <div className="flex flex-col items-center justify-center pt-5 pb-6">
           <div className="text-primary group-hover:text-white duration-300 mb-2">

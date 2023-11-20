@@ -70,7 +70,7 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
             >
               <Dialog.Panel
                 id="addItemModal"
-                className="transform h-full w-[80%] sm:w-[70%] md:w-[50%] lg:w-[40%] 2xl:w-[30%] rounded-[14px] shadow-xl py-10"
+                className="transform h-full w-[80%] sm:w-[70%] md:w-[50%] lg:w-[40%] 2xl:w-[40%] rounded-[14px] shadow-xl py-10"
               >
                 <div className="h-full text-center space-y-5">
                   <div className="w-[80%] mx-auto">
