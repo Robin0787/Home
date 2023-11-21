@@ -2,15 +2,18 @@ import { Listbox, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { BsCheck2 } from "react-icons/bs";
 import { PiCaretUpDownLight } from "react-icons/pi";
+import CircleLoader from "../loaders/circleLoader/CircleLoader";
 
 type Props = {
-  items: string[];
+  items: string[] | undefined;
   handleList: unknown;
-  selected: string;
+  selected: string | null;
   title: string;
   zIndex?: number;
   border?: string;
+  bottom?: string;
   align?: string;
+  loading: boolean;
 };
 
 const ListDropdown = ({
@@ -18,7 +21,9 @@ const ListDropdown = ({
   handleList,
   selected,
   title,
+  bottom = "-bottom-16 2xl:-bottom-28",
   zIndex = 1,
+  loading,
 }: Props) => {
   return (
     <div
@@ -51,38 +56,44 @@ const ListDropdown = ({
           >
             <Listbox.Options
               id="listScrollBar"
-              className="absolute left-full -bottom-16 2xl:-bottom-28 max-h-44 2xl:max-h-64 w-52 overflow-auto rounded-md bg-[#00000080] border border-[#ffffff50] text-base shadow-lg sm:text-sm"
+              className={`absolute left-full ${
+                loading ? "-bottom-2" : `${bottom} max-h-44 2xl:max-h-64`
+              }  w-52 overflow-auto rounded-md bg-[#00000080] border border-[#ffffff50] text-base shadow-lg sm:text-sm`}
             >
-              {items.map((item, itemIndex) => (
-                <Listbox.Option
-                  key={itemIndex}
-                  className={({ active }) =>
-                    `relative cursor-pointer duration-200 select-none py-2 ${
-                      active
-                        ? "bg-[#ffffff10] bg-opacity-20 text-white"
-                        : "text-primary"
-                    }`
-                  }
-                  value={item}
-                >
-                  {({ selected }) => (
-                    <>
-                      <span
-                        className={`block truncate ${
-                          selected ? "font-medium" : "font-normal"
-                        }`}
-                      >
-                        {item}
-                      </span>
-                      {selected ? (
-                        <span className="absolute inset-y-0 left-0 flex items-center pl-8 text-[#ffffff]">
-                          <BsCheck2 className="h-5 w-5" aria-hidden="true" />
+              {loading ? (
+                <CircleLoader loader={true} />
+              ) : (
+                items?.map((item, itemIndex) => (
+                  <Listbox.Option
+                    key={itemIndex}
+                    className={({ active }) =>
+                      `relative cursor-pointer duration-200 select-none py-2 ${
+                        active
+                          ? "bg-[#ffffff10] bg-opacity-20 text-white"
+                          : "text-primary"
+                      }`
+                    }
+                    value={item}
+                  >
+                    {({ selected }) => (
+                      <>
+                        <span
+                          className={`block truncate ${
+                            selected ? "font-medium" : "font-normal"
+                          }`}
+                        >
+                          {item}
                         </span>
-                      ) : null}
-                    </>
-                  )}
-                </Listbox.Option>
-              ))}
+                        {selected ? (
+                          <span className="absolute inset-y-0 left-0 flex items-center pl-8 text-[#ffffff]">
+                            <BsCheck2 className="h-5 w-5" aria-hidden="true" />
+                          </span>
+                        ) : null}
+                      </>
+                    )}
+                  </Listbox.Option>
+                ))
+              )}
             </Listbox.Options>
           </Transition>
         </div>
