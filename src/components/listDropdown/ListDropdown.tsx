@@ -35,7 +35,7 @@ const ListDropdown = ({
           <Listbox.Button
             className={`relative w-full text-left py-2 pl-3 pr-10 sm:text-sm`}
           >
-            <span className="block truncate text-primary">
+            <span className="block truncate text-primary capitalize">
               {selected ? selected : `Select ${title}`}
             </span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -67,7 +67,7 @@ const ListDropdown = ({
                   <Listbox.Option
                     key={itemIndex}
                     className={({ active }) =>
-                      `relative cursor-pointer duration-200 select-none py-2 ${
+                      `relative cursor-pointer duration-200 select-none py-2 capitalize ${
                         active
                           ? "bg-[#ffffff10] bg-opacity-20 text-white"
                           : "text-primary"
