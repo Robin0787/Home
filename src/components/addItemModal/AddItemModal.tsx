@@ -1,11 +1,11 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
 import { FaLock } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
 import ListDropdown from "../listDropdown/ListDropdown";
 import UploadImage from "../uploadImage/UploadImage";
 import styles from "./AddItemModal.module.css";
 import getCategoriesList from "./helper/getCategoriesList";
+import postWebsiteToDB from "./helper/postWebsiteToDB";
 
 type Props = {
   openModal: boolean;
@@ -13,11 +13,8 @@ type Props = {
 };
 
 const AddItemModal = ({ openModal, setModal }: Props) => {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const queryValue = searchParams.get("q");
   const [image, setImage] = useState<FormData>();
-  const [selectedCategory, setSelectedCategory] = useState(queryValue);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [listLoading, setListLoading] = useState<boolean>(false);
   const [categoriesList, setCategoriesList] = useState<string[]>();
   const [selectedBgType, setSelectedBgType] = useState<
@@ -42,6 +39,15 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
     setSelectedBgType(selectedItem);
   }
 
+  function clearValues() {
+    setError("");
+    setLogoURL("");
+    setWebsiteName("");
+    setWebsiteURL("");
+    setSelectedBgType("");
+    setSelectedCategory("");
+  }
+
   function handleAddItem() {
     if (!logoURL) {
       setError("Logo URL is required");
@@ -64,21 +70,23 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
         name: websiteName,
         logo: logoURL,
         url: websiteURL,
-        categories: [selectedCategory],
-        query: queryValue,
+        category: [selectedCategory?.toLowerCase()],
         ring: selectedBgType === "Circle",
       };
-      console.log(itemDetails);
+      postWebsiteToDB(itemDetails)
+        .then((data) => {
+          if (data.insertedId) {
+            setModal(false);
+            clearValues();
+          } else {
+            console.log(data);
+            setError("Something went wrong!");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }
-
-  function clearValues() {
-    setError("");
-    setLogoURL("");
-    setWebsiteName("");
-    setWebsiteURL("");
-    setSelectedCategory("");
-    setSelectedBgType("");
   }
 
   useEffect(() => {
@@ -252,6 +260,7 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
                       <button
                         onClick={() => {
                           setModal(false);
+                          clearValues();
                         }}
                         className="w-full  py-2 2xl:py-3 rounded-md text-primary bg-transparent border border-[#ffffff20] hover:bg-[#ffffff20] duration-300 cursor-pointer"
                       >

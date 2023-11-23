@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const getWebsites = async (queryName: string) => {
+const getWebsites = async (queryName: string | null) => {
   let url;
   if (queryName) {
     url =

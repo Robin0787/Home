@@ -1,8 +1,9 @@
 import { useLocation } from "react-router-dom";
 import SingleItem from "../singleItem/SingleItem.tsx";
-import getWebsites from "./helper/getWebsites.js";
 
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useState } from "react";
 import ItemsSkeleton from "../ItemsSkeleton/ItemsSkeleton.tsx";
 import MainItemsFooter from "../mainItemsFooter/MainItemsFooter.tsx";
 
@@ -20,21 +21,39 @@ const MainItems = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const queryValue = searchParams.get("q");
-  const [websites, setWebsites] = useState<Websites>();
+  // const [websites, setWebsites] = useState<Websites>();
   const [loading, setLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    setLoading(true);
-    getWebsites(queryValue)
-      .then((data: Websites) => {
-        setWebsites(data);
-        setLoading(false);
-      })
-      .catch((err: unknown) => {
-        setLoading(false);
-        console.log(err);
-      });
-  }, [queryValue]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   getWebsites(queryValue)
+  //     .then((data: Websites) => {
+  //       setWebsites(data);
+  //       setLoading(false);
+  //     })
+  //     .catch((err: unknown) => {
+  //       setLoading(false);
+  //       console.log(err);
+  //     });
+  // }, [queryValue]);
+
+  const { data: websites = [] } = useQuery({
+    queryKey: ["websites", queryValue],
+    queryFn: async () => {
+      setLoading(true);
+      let url;
+      if (queryValue) {
+        url =
+          import.meta.env.VITE_BASE_SERVER_URL +
+          `/api/v1/websites/${queryValue}`;
+      } else {
+        url = import.meta.env.VITE_BASE_SERVER_URL + `/api/v1/websites/home`;
+      }
+      const res = await axios.get(url);
+      setLoading(false);
+      return res.data;
+    },
+  });
 
   return (
     <section className="h-full w-full rounded-[24px]">
