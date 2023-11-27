@@ -42,8 +42,8 @@ const SingleItem = (item: Item) => {
           </div>
           {/* Link Field */}
           <div className="mt-2 w-full flex justify-between items-center gap-1">
-            <div className="w-[85%] 2xl:w-[90%] bg-[#ffffff12] py-[6px] px-2 text-center rounded-[8px] overflow-hidden">
-              <h4 className="text-xs 2xl:text-sm tracking-[0.5px] text-primary">
+            <div className="w-[85%] 2xl:w-[90%] bg-[#ffffff12] py-[6px] px-2 text-center rounded-[8px] overflow-hidden ">
+              <h4 className="text-xs 2xl:text-sm tracking-[0.5px] text-primary overflow-hidden whitespace-nowrap">
                 {url}
               </h4>
             </div>

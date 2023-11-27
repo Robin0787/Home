@@ -1,7 +1,9 @@
 import { Dialog, Transition } from "@headlessui/react";
+import { useQueryClient } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
 import { FaLock } from "react-icons/fa";
 import ListDropdown from "../listDropdown/ListDropdown";
+import CircleLoader from "../loaders/circleLoader/CircleLoader";
 import UploadImage from "../uploadImage/UploadImage";
 import styles from "./AddItemModal.module.css";
 import getCategoriesList from "./helper/getCategoriesList";
@@ -25,6 +27,8 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
   const [logoURL, setLogoURL] = useState<string>("");
   const [lockUploadLogo, setLockUploadLogo] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
+  const [itemAddLoading, setItemAddLoading] = useState<boolean>(false);
+  const queryClient = useQueryClient();
 
   function handleImageChange(img: FormData) {
     setImage(img);
@@ -66,6 +70,7 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
       return;
     } else {
       setError("");
+      setItemAddLoading(true);
       const itemDetails = {
         name: websiteName,
         logo: logoURL,
@@ -76,7 +81,10 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
       postWebsiteToDB(itemDetails)
         .then((data) => {
           if (data.insertedId) {
+            setItemAddLoading(false);
             setModal(false);
+            // this is for re fetching websites in the main items section.
+            queryClient.invalidateQueries(["websites"]);
             clearValues();
           } else {
             console.log(data);
@@ -84,6 +92,7 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
           }
         })
         .catch((err) => {
+          setItemAddLoading(false);
           console.log(err);
         });
     }
@@ -253,9 +262,17 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
                       )}
                       <button
                         onClick={handleAddItem}
-                        className="w-full py-2 2xl:py-3 rounded-md text-primary bg-[#ffffff20] border border-[#ffffff20] hover:bg-[#ffffff40] duration-300 cursor-pointer"
+                        className="w-full py-2 2xl:py-3 rounded-md text-primary bg-[#ffffff20] border border-[#ffffff20] hover:bg-[#ffffff40] duration-300 cursor-pointer flex justify-center items-center"
                       >
-                        Add
+                        {itemAddLoading ? (
+                          <CircleLoader
+                            loader={true}
+                            height={"24px"}
+                            width={"24px"}
+                          />
+                        ) : (
+                          "Add"
+                        )}
                       </button>
                       <button
                         onClick={() => {

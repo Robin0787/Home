@@ -7,35 +7,11 @@ import { useState } from "react";
 import ItemsSkeleton from "../ItemsSkeleton/ItemsSkeleton.tsx";
 import MainItemsFooter from "../mainItemsFooter/MainItemsFooter.tsx";
 
-type Websites = [
-  {
-    name: string;
-    logo: string;
-    url: string;
-    category: string;
-    ring: boolean;
-  }
-];
-
 const MainItems = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const queryValue = searchParams.get("q");
-  // const [websites, setWebsites] = useState<Websites>();
   const [loading, setLoading] = useState<boolean>(false);
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   getWebsites(queryValue)
-  //     .then((data: Websites) => {
-  //       setWebsites(data);
-  //       setLoading(false);
-  //     })
-  //     .catch((err: unknown) => {
-  //       setLoading(false);
-  //       console.log(err);
-  //     });
-  // }, [queryValue]);
 
   const { data: websites = [] } = useQuery({
     queryKey: ["websites", queryValue],
