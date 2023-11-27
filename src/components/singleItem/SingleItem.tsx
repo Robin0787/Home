@@ -1,4 +1,9 @@
+import { useState } from "react";
+import { AiFillEdit } from "react-icons/ai";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import { FiExternalLink } from "react-icons/fi";
+import { IoMdArrowRoundUp } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
 
 type Item = {
   name: string;
@@ -10,8 +15,14 @@ type Item = {
 
 const SingleItem = (item: Item) => {
   const { logo, name, url, category, ring } = item;
+  const [showEditBox, setShowEditBox] = useState<boolean>(false);
   return (
-    <div className="bg-white/10 rounded-[14px]">
+    <div
+      className="bg-white/10 rounded-[14px] relative group"
+      onMouseLeave={() => {
+        setShowEditBox(false);
+      }}
+    >
       <div className="h-full py-5 px-3 2xl:py-7 2xl:px-5 overflow-hidden">
         <div className="w-full h-full">
           {/* Logo Field */}
@@ -54,6 +65,39 @@ const SingleItem = (item: Item) => {
               }}
             >
               <FiExternalLink size={16} />
+            </div>
+          </div>
+          {/* Three dot or setting field */}
+          <div
+            className="text-primary hidden group-hover:block absolute top-2 right-2 p-2 bg-transparent hover:bg-white/10 rounded-[8px] duration-300 cursor-pointer"
+            onClick={() => {
+              setShowEditBox((prev) => !prev);
+            }}
+          >
+            <BsThreeDotsVertical size={20} />
+          </div>
+          <div
+            className={`absolute top-0 left-0 w-full ${
+              showEditBox ? "h-full" : "h-0"
+            }  home rounded-[12px] duration-300 overflow-hidden`}
+          >
+            <div className="h-full flex justify-center items-center text-primary bg-white/10 rounded-[12px]">
+              <div className="p-3 rounded-[12px] space-y-1">
+                <div className="flex justify-start items-center gap-3 px-3 py-2 hover:bg-white/20 rounded-[8px] duration-300 cursor-pointer">
+                  <AiFillEdit size={20} /> Edit
+                </div>
+                <div className="flex justify-start items-center gap-3 px-3 py-2 hover:bg-white/20 rounded-[8px] duration-300 cursor-pointer">
+                  <MdDelete size={20} /> Delete
+                </div>
+              </div>
+              <div
+                className="flex justify-start items-center cursor-pointer absolute bottom-2 left-1/2 -translate-x-1/2 text-white p-2 hover:bg-white/20 rounded-full duration-300"
+                onClick={() => {
+                  setShowEditBox(false);
+                }}
+              >
+                <IoMdArrowRoundUp size={20} />
+              </div>
             </div>
           </div>
         </div>
