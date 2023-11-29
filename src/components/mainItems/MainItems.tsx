@@ -25,9 +25,15 @@ const MainItems = () => {
       } else {
         url = import.meta.env.VITE_BASE_SERVER_URL + `/api/v1/websites/home`;
       }
-      const res = await axios.get(url);
-      setLoading(false);
-      return res.data;
+      try {
+        const res = await axios.get(url);
+        setLoading(false);
+        return res.data;
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+        return [];
+      }
     },
   });
 
@@ -45,14 +51,7 @@ const MainItems = () => {
           ) : websites?.length > 0 ? (
             <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5">
               {websites?.map((item, index) => (
-                <SingleItem
-                  key={index}
-                  name={item.name}
-                  logo={item.logo}
-                  url={item.url}
-                  category={item.category}
-                  ring={item.ring}
-                />
+                <SingleItem key={index} item={item} />
               ))}
             </section>
           ) : (

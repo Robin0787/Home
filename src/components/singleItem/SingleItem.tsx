@@ -1,11 +1,14 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { AiFillEdit } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FiExternalLink } from "react-icons/fi";
 import { IoMdArrowRoundUp } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
+import ConfirmModal from "../confirmModal/ConfirmModal.tsx";
+import deleteItem from "./helper/deleteItem";
 
 type Item = {
+  _id: string;
   name: string;
   logo: string;
   url: string;
@@ -13,9 +16,24 @@ type Item = {
   ring: boolean;
 };
 
-const SingleItem = (item: Item) => {
-  const { logo, name, url, category, ring } = item;
+const SingleItem = ({ item }: { item: Item }) => {
+  const { _id, logo, name, url, ring } = item;
   const [showEditBox, setShowEditBox] = useState<boolean>(false);
+  const [confirmModal, setConfirmModal] = useState<boolean>(false);
+  const queryClient = useQueryClient();
+
+  function handleConfirmModal() {
+    deleteItem(_id)
+      .then((data) => {
+        queryClient.invalidateQueries(["websites"]);
+        setConfirmModal(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setConfirmModal(false);
+      });
+  }
+
   return (
     <div
       className="bg-white/10 rounded-[14px] relative group"
@@ -79,19 +97,21 @@ const SingleItem = (item: Item) => {
           <div
             className={`absolute top-0 left-0 w-full ${
               showEditBox ? "h-full" : "h-0"
-            }  home rounded-[12px] duration-300 overflow-hidden`}
+            }  home rounded-[12px] duration-500 overflow-hidden`}
           >
             <div className="h-full flex justify-center items-center text-primary bg-white/10 rounded-[12px]">
-              <div className="p-3 rounded-[12px] space-y-1">
-                <div className="flex justify-start items-center gap-3 px-3 py-2 hover:bg-white/20 rounded-[8px] duration-300 cursor-pointer">
-                  <AiFillEdit size={20} /> Edit
-                </div>
-                <div className="flex justify-start items-center gap-3 px-3 py-2 hover:bg-white/20 rounded-[8px] duration-300 cursor-pointer">
+              <div className="p-3">
+                <div
+                  className="flex justify-start items-center gap-3 px-3 py-2 bg-[#ffffff08] hover:bg-[#ffffff15] rounded-[8px] duration-300 cursor-pointer"
+                  onClick={() => {
+                    setConfirmModal(true);
+                  }}
+                >
                   <MdDelete size={20} /> Delete
                 </div>
               </div>
               <div
-                className="flex justify-start items-center cursor-pointer absolute bottom-2 left-1/2 -translate-x-1/2 text-white p-2 hover:bg-white/20 rounded-full duration-300"
+                className="flex justify-start items-center cursor-pointer absolute bottom-2 left-1/2 -translate-x-1/2 text-white p-2 bg-[#ffffff08] hover:bg-[#ffffff15] rounded-full duration-300"
                 onClick={() => {
                   setShowEditBox(false);
                 }}
@@ -100,6 +120,11 @@ const SingleItem = (item: Item) => {
               </div>
             </div>
           </div>
+          <ConfirmModal
+            openModal={confirmModal}
+            setOpenModal={setConfirmModal}
+            modalHandler={handleConfirmModal}
+          />
         </div>
       </div>
     </div>

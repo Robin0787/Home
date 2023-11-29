@@ -8,6 +8,7 @@ import UploadImage from "../uploadImage/UploadImage";
 import styles from "./AddItemModal.module.css";
 import getCategoriesList from "./helper/getCategoriesList";
 import postWebsiteToDB from "./helper/postWebsiteToDB";
+import uploadImage from "./helper/uploadImage";
 
 type Props = {
   openModal: boolean;
@@ -15,7 +16,6 @@ type Props = {
 };
 
 const AddItemModal = ({ openModal, setModal }: Props) => {
-  const [image, setImage] = useState<FormData>();
   const [selectedCategory, setSelectedCategory] = useState("");
   const [listLoading, setListLoading] = useState<boolean>(false);
   const [categoriesList, setCategoriesList] = useState<string[]>();
@@ -25,14 +25,23 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
   const [websiteName, setWebsiteName] = useState<string>("");
   const [websiteURL, setWebsiteURL] = useState<string>("");
   const [logoURL, setLogoURL] = useState<string>("");
+  const [imageLoading, setImageLoading] = useState<boolean>(false);
   const [lockUploadLogo, setLockUploadLogo] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
   const [itemAddLoading, setItemAddLoading] = useState<boolean>(false);
   const queryClient = useQueryClient();
 
   function handleImageChange(img: FormData) {
-    setImage(img);
-    setLogoURL(img.name);
+    setImageLoading(true);
+    uploadImage(img)
+      .then((data) => {
+        setLogoURL(data.display_url);
+        setImageLoading(false);
+      })
+      .catch((err) => {
+        setImageLoading(false);
+        console.log(err);
+      });
   }
 
   function handleCategory(selectedItem: string) {
@@ -153,7 +162,8 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
                     <div className="relative w-full">
                       <UploadImage
                         handleImageChange={handleImageChange}
-                        image={image}
+                        loading={imageLoading}
+                        image={lockUploadLogo ? "" : logoURL}
                       />
                       {lockUploadLogo && (
                         <div
