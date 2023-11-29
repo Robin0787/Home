@@ -1,6 +1,15 @@
+import React from "react";
 import {
   FaAddressCard,
+  FaBicycle,
+  FaBriefcase,
+  FaBus,
+  FaCalendarAlt,
+  FaCamera,
+  FaCar,
+  FaChartBar,
   FaCode,
+  FaEnvelope,
   FaFilm,
   FaFolder,
   FaFootballBall,
@@ -8,71 +17,76 @@ import {
   FaHeartbeat,
   FaHome,
   FaKeyboard,
+  FaMapMarkerAlt,
   FaMicrochip,
+  FaMobileAlt,
+  FaMoneyBillWave,
+  FaMoon,
   FaMusic,
   FaNewspaper,
   FaPaintBrush,
   FaPlane,
+  FaPlaneDeparture,
   FaPlus,
   FaRobot,
   FaShareAlt,
+  FaShip,
   FaShoppingCart,
+  FaStar,
+  FaSun,
+  FaTrain,
   FaUser,
   FaUtensils,
 } from "react-icons/fa";
-import { MdFavorite } from "react-icons/md";
 
 import { FaPencil } from "react-icons/fa6";
+import { MdFavorite } from "react-icons/md";
 
 const GetIcon = ({ iconName, size }: { iconName: string; size: number }) => {
-  switch (iconName) {
-    case "FaAddressCard":
-      return <FaAddressCard size={size} />;
-    case "FaCode":
-      return <FaCode size={size} />;
-    case "FaFolder":
-      return <FaFolder size={size} />;
-    case "FaHome":
-      return <FaHome size={size} />;
-    case "FaKeyboard":
-      return <FaKeyboard size={size} />;
-    case "FaPaintBrush":
-      return <FaPaintBrush size={size} />;
-    case "FaPlus":
-      return <FaPlus size={size} />;
-    case "FaRobot":
-      return <FaRobot size={size} />;
-    case "FaShareAlt":
-      return <FaShareAlt size={size} />;
-    case "FaUser":
-      return <FaUser size={size} />;
-    case "FaPencil":
-      return <FaPencil size={size} />;
-    case "MdFavorite":
-      return <MdFavorite size={size} />;
-    case "FaShoppingCart":
-      return <FaShoppingCart size={size} />;
-    case "FaGraduationCap":
-      return <FaGraduationCap size={size} />;
-    case "FaNewspaper":
-      return <FaNewspaper size={size} />;
-    case "FaHeartbeat":
-      return <FaHeartbeat size={size} />;
-    case "FaFilm":
-      return <FaFilm size={size} />;
-    case "FaMicrochip":
-      return <FaMicrochip size={size} />;
-    case "FaPlane":
-      return <FaPlane size={size} />;
-    case "FaUtensils":
-      return <FaUtensils size={size} />;
-    case "FaFootballBall":
-      return <FaFootballBall size={size} />;
-    case "Music":
-      return <FaMusic size={size} />;
-    default:
-      return <FaFolder size={size} />;
-  }
+  const iconComponents: { [key: string]: React.ReactNode } = {
+    FaAddressCard: <FaAddressCard size={size} />,
+    FaCode: <FaCode size={size} />,
+    FaFolder: <FaFolder size={size} />,
+    FaHome: <FaHome size={size} />,
+    FaKeyboard: <FaKeyboard size={size} />,
+    FaPaintBrush: <FaPaintBrush size={size} />,
+    FaPlus: <FaPlus size={size} />,
+    FaRobot: <FaRobot size={size} />,
+    FaShareAlt: <FaShareAlt size={size} />,
+    FaUser: <FaUser size={size} />,
+    FaPencil: <FaPencil size={size} />,
+    MdFavorite: <MdFavorite size={size} />,
+    FaShoppingCart: <FaShoppingCart size={size} />,
+    FaGraduationCap: <FaGraduationCap size={size} />,
+    FaNewspaper: <FaNewspaper size={size} />,
+    FaHeartbeat: <FaHeartbeat size={size} />,
+    FaFilm: <FaFilm size={size} />,
+    FaMicrochip: <FaMicrochip size={size} />,
+    FaPlane: <FaPlane size={size} />,
+    FaUtensils: <FaUtensils size={size} />,
+    FaFootballBall: <FaFootballBall size={size} />,
+    Music: <FaMusic size={size} />,
+    FaMobileAlt: <FaMobileAlt size={size} />,
+    FaEnvelope: <FaEnvelope size={size} />,
+    FaCalendarAlt: <FaCalendarAlt size={size} />,
+    FaChartBar: <FaChartBar size={size} />,
+    FaMapMarkerAlt: <FaMapMarkerAlt size={size} />,
+    FaCamera: <FaCamera size={size} />,
+    FaSun: <FaSun size={size} />,
+    FaMoon: <FaMoon size={size} />,
+    FaStar: <FaStar size={size} />,
+    FaBicycle: <FaBicycle size={size} />,
+    FaCar: <FaCar size={size} />,
+    FaBus: <FaBus size={size} />,
+    FaTrain: <FaTrain size={size} />,
+    FaShip: <FaShip size={size} />,
+    FaPlaneDeparture: <FaPlaneDeparture size={size} />,
+    FaMoneyBillWave: <FaMoneyBillWave size={size} />,
+    FaBriefcase: <FaBriefcase size={size} />,
+    default: <FaFolder size={size} />,
+  };
+
+  return iconComponents[iconName] || iconComponents.default;
 };
 
 export default GetIcon;

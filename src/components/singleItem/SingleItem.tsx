@@ -102,7 +102,7 @@ const SingleItem = ({ item }: { item: Item }) => {
             <div className="h-full flex justify-center items-center text-primary bg-white/10 rounded-[12px]">
               <div className="p-3">
                 <div
-                  className="flex justify-start items-center gap-3 px-3 py-2 bg-[#ffffff08] hover:bg-[#ffffff15] rounded-[8px] duration-300 cursor-pointer"
+                  className="flex justify-start items-center gap-3 px-3 py-2 bg-[#ffffff08] hover:bg-[#ffffff15] rounded-[20px] duration-300 cursor-pointer"
                   onClick={() => {
                     setConfirmModal(true);
                   }}
@@ -111,7 +111,7 @@ const SingleItem = ({ item }: { item: Item }) => {
                 </div>
               </div>
               <div
-                className="flex justify-start items-center cursor-pointer absolute bottom-2 left-1/2 -translate-x-1/2 text-white p-2 bg-[#ffffff08] hover:bg-[#ffffff15] rounded-full duration-300"
+                className="flex justify-start items-center cursor-pointer absolute top-2 -right-2 -translate-x-1/2 text-white p-2 bg-[#ffffff08] hover:bg-[#ffffff15] rounded-full duration-300"
                 onClick={() => {
                   setShowEditBox(false);
                 }}

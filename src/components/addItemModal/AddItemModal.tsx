@@ -1,12 +1,12 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { useQueryClient } from "@tanstack/react-query";
-import { Fragment, useEffect, useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+import { Fragment, useState } from "react";
 import { FaLock } from "react-icons/fa";
 import ListDropdown from "../listDropdown/ListDropdown";
 import CircleLoader from "../loaders/circleLoader/CircleLoader";
 import UploadImage from "../uploadImage/UploadImage";
 import styles from "./AddItemModal.module.css";
-import getCategoriesList from "./helper/getCategoriesList";
 import postWebsiteToDB from "./helper/postWebsiteToDB";
 import uploadImage from "./helper/uploadImage";
 
@@ -17,8 +17,6 @@ type Props = {
 
 const AddItemModal = ({ openModal, setModal }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [listLoading, setListLoading] = useState<boolean>(false);
-  const [categoriesList, setCategoriesList] = useState<string[]>();
   const [selectedBgType, setSelectedBgType] = useState<
     "Circle" | "Square" | ""
   >("Circle");
@@ -107,18 +105,20 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
     }
   }
 
-  useEffect(() => {
-    setListLoading(true);
-    getCategoriesList()
-      .then((data: string[]) => {
-        setCategoriesList(data);
-        setListLoading(false);
-      })
-      .catch((err: unknown) => {
-        console.log(err);
-        setListLoading(false);
-      });
-  }, []);
+  const { data: categoriesList = [], isLoading: listLoading = false } =
+    useQuery({
+      queryKey: ["category-list"],
+      queryFn: async () => {
+        try {
+          const url: string =
+            import.meta.env.VITE_BASE_SERVER_URL + `/api/v1/categories-list`;
+          const res = await axios.get(url);
+          return res.data;
+        } catch (error) {
+          return [];
+        }
+      },
+    });
 
   return (
     <Transition appear show={openModal} as={Fragment}>
