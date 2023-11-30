@@ -1,6 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Fragment, useState } from "react";
+import { MdCancel } from "react-icons/md";
 import IconList from "../iconList/iconList";
 import CircleLoader from "../loaders/circleLoader/CircleLoader";
 import styles from "./AddCategoryModal.module.css";
@@ -60,6 +61,7 @@ const AddCategoryModal = ({ openModal, setModal }: Props) => {
   }
 
   function clearValues() {
+    setError("");
     setCategoryName("");
     setSelectedIcon("");
   }
@@ -99,9 +101,9 @@ const AddCategoryModal = ({ openModal, setModal }: Props) => {
             >
               <Dialog.Panel
                 id="addItemModal"
-                className="transform h-full w-[80%] sm:w-[70%] md:w-[50%] lg:w-[40%] rounded-[14px] shadow-xl py-10"
+                className="transform h-full w-[80%] sm:w-[70%] md:w-[50%] lg:w-[35%] rounded-[14px] shadow-xl py-10"
               >
-                <div className="h-full text-center space-y-0">
+                <div className="h-full text-center">
                   <div className="w-[80%] mx-auto">
                     <div className="mt-4 flex justify-between items-center gap-3 2xl:gap-5">
                       <div className="w-full md:w-[40%] relative bg-[#ffffff20] text-primary rounded-[8px]">
@@ -126,7 +128,7 @@ const AddCategoryModal = ({ openModal, setModal }: Props) => {
                         <span className={styles.inputTitle}>Category Name</span>
                       </div>
                     </div>
-                    <div className="pt-8 mt-4 flex flex-col items-center gap-3 2xl:gap-5 relative ">
+                    <div className="pt-6 mt-2 flex flex-col items-center gap-3 2xl:gap-5 relative ">
                       {error && (
                         <div className="text-xs tracking-wide text-left text-white absolute top-0 left-0">
                           {error}
@@ -146,14 +148,16 @@ const AddCategoryModal = ({ openModal, setModal }: Props) => {
                           "Add"
                         )}
                       </button>
+                    </div>
+                    <div className="absolute -top-2 -right-2">
                       <button
                         onClick={() => {
                           setModal(false);
                           clearValues();
                         }}
-                        className="w-full  py-2 2xl:py-3 rounded-md text-primary bg-transparent border border-[#ffffff20] hover:bg-[#ffffff20] duration-300 cursor-pointer"
+                        className="w-full text-primary cursor-pointer p-1 rounded-full bg-white/10 hover:bg-white/30 duration-300"
                       >
-                        Cancel
+                        <MdCancel size={25} />
                       </button>
                     </div>
                   </div>

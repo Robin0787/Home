@@ -5,6 +5,7 @@
   align-items: center;
   gap: 10px;
   font-size: 16px;
+  text-wrap: nowrap;
   position: relative;
   background-color: #ffffff10;
   color: #ffffff;

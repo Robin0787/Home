@@ -46,7 +46,7 @@ const IconList = ({ items, handleList, selected, title }: Props) => {
           >
             <Listbox.Options
               id="listScrollBar"
-              className={`absolute left-0 -bottom-10 max-h-32 w-full overflow-y-auto overflow-x-hidden rounded-md bg-black/60 border border-[#ffffff50] text-base shadow-lg sm:text-sm grid grid-cols-3 gap-2 p-3`}
+              className={`absolute left-0 -bottom-8 max-h-32 w-full overflow-y-auto overflow-x-hidden rounded-md bg-black/60 border border-[#ffffff50] text-base shadow-lg sm:text-sm grid grid-cols-3 gap-2 p-3`}
             >
               {items?.map((item, itemIndex) => (
                 <Listbox.Option

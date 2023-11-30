@@ -1,14 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
-import logo from "../../assets/logo.png";
+import { BiLink } from "react-icons/bi";
+import { RxCross1 } from "react-icons/rx";
 import AddCategoryModal from "../addCategoryModal/AddCategoryModal.tsx";
 import GetIcon from "../getIcon/GetIcon.js";
 import MenuSkeleton from "../menuSkeleton/MenuSkeleton.tsx";
 import MenuItem from "./MenuItem";
 import styles from "./SideMenu.module.css";
 
-const SideMenu = () => {
+type Props = {
+  onMobile?: boolean;
+  cancelFn?: (value: boolean) => void | undefined;
+};
+
+const SideMenu = ({ onMobile, cancelFn }: Props) => {
   const [addCategoryModal, setAddCategoryModal] = useState<boolean>(false);
 
   const { data: categories = [], isLoading: loading = false } = useQuery({
@@ -28,11 +34,22 @@ const SideMenu = () => {
   return (
     <section className="h-full w-full relative">
       <div className="h-[10%] px-5 bg-[#ffffff10]  rounded-t-[20px]">
-        <div className="h-full flex justify-start items-center text-white">
-          <div className="flex justify-start items-center gap-3">
-            <img src={logo} alt="logo" className="h-10 w-14" />
-            <h1 className="text-2xl font-bold">Site Saver</h1>
+        <div className="h-full flex justify-between items-center text-white">
+          <div className="flex justify-start items-center gap-1 md:gap-3">
+            <BiLink size={35} />
+            <h1 className="text-xl lg:text-2xl font-bold whitespace-nowrap">
+              Site Saver
+            </h1>
           </div>
+          {onMobile && (
+            <div
+              onClick={() => {
+                cancelFn(false);
+              }}
+            >
+              <RxCross1 size={25} />
+            </div>
+          )}
         </div>
       </div>
       <article id="menuScrollBar" className="h-[80%] overflow-y-scroll">
@@ -79,7 +96,12 @@ const SideMenu = () => {
         <div className="flex justify-center items-center h-full">
           <p className="text-sm 2xl:text-base text-primary">
             All rights reserved by{" "}
-            <span className="text-white font-semibold">Robin</span>
+            <span
+              className="text-white font-semibold cursor-pointer"
+              onClick={() => window.open("https://robin-web-dev.netlify.app/")}
+            >
+              Robin
+            </span>
           </p>
         </div>
       </div>

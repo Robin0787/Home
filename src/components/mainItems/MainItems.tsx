@@ -42,14 +42,14 @@ const MainItems = () => {
       <section id="scrollBar" className="h-[90%] w-full p-5 overflow-y-auto">
         <section className="h-full">
           {loading ? (
-            <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-5">
+            <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-5">
               <ItemsSkeleton loader={true} />
               <ItemsSkeleton loader={true} />
               <ItemsSkeleton loader={true} />
               <ItemsSkeleton loader={true} />
             </section>
           ) : websites?.length > 0 ? (
-            <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5">
+            <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5">
               {websites?.map((item, index) => (
                 <SingleItem key={index} item={item} />
               ))}
