@@ -16,6 +16,7 @@
   padding: 12px;
   pointer-events: none;
   font-size: 0.9em;
+  text-wrap: nowrap;
   color: inherit;
   text-transform: uppercase;
   transition: 0.3s;
@@ -38,4 +39,11 @@
 
 .inputField:disabled {
   cursor: not-allowed;
+}
+
+@media screen and (width < 476px) {
+  .inputTitle {
+    padding: 15px 12px;
+    font-size: 0.7em;
+  }
 }

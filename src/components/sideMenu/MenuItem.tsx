@@ -7,6 +7,7 @@ type Item = {
   query: string;
   icon: string;
   iconSize: number;
+  closeMenu?(): void;
 };
 
 const MenuItem = (item: Item) => {
@@ -17,6 +18,9 @@ const MenuItem = (item: Item) => {
 
   function handleClick() {
     setSearchParams({ q: item.query });
+    if (item.closeMenu) {
+      item.closeMenu();
+    }
   }
 
   return (

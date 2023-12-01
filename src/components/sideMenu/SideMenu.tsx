@@ -31,6 +31,12 @@ const SideMenu = ({ onMobile, cancelFn }: Props) => {
     },
   });
 
+  function closeMenu() {
+    if (cancelFn) {
+      cancelFn(false);
+    }
+  }
+
   return (
     <section className="h-full w-full relative">
       <div className="h-[10%] px-5 bg-[#ffffff10]  rounded-t-[20px]">
@@ -42,11 +48,7 @@ const SideMenu = ({ onMobile, cancelFn }: Props) => {
             </h1>
           </div>
           {onMobile && (
-            <div
-              onClick={() => {
-                cancelFn(false);
-              }}
-            >
+            <div className="cursor-pointer" onClick={closeMenu}>
               <RxCross1 size={25} />
             </div>
           )}
@@ -74,11 +76,15 @@ const SideMenu = ({ onMobile, cancelFn }: Props) => {
                   icon={item.icon}
                   iconSize={item.iconSize}
                   query={item.query}
+                  closeMenu={closeMenu}
                 />
               ))}
               <li
                 className={styles.menu}
-                onClick={() => setAddCategoryModal(true)}
+                onClick={() => {
+                  setAddCategoryModal(true);
+                  closeMenu();
+                }}
               >
                 <GetIcon iconName="FaPlus" size={20} />
                 <span>Add New</span>

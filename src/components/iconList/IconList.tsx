@@ -21,7 +21,7 @@ const IconList = ({ items, handleList, selected, title }: Props) => {
           <Listbox.Button
             className={`relative w-full text-center py-2 pl-3 pr-10 sm:text-sm`}
           >
-            <span className="truncate text-primary capitalize flex justify-center items-center">
+            <span className="truncate text-primary text-sm sm:text-base capitalize flex justify-center items-center">
               {selected ? (
                 <GetIcon iconName={selected} size={20} />
               ) : (

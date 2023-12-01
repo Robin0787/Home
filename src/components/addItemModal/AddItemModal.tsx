@@ -155,10 +155,10 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
             >
               <Dialog.Panel
                 id="addItemModal"
-                className="transform h-full w-[80%] sm:w-[70%] md:w-[50%] lg:w-[40%] rounded-[14px] shadow-xl py-10"
+                className="transform h-full w-[85%] sm:w-[70%] md:w-[50%] lg:w-[40%] rounded-[14px] shadow-xl py-5 md:py-10"
               >
                 <div className="h-full text-center space-y-0">
-                  <div className="w-[80%] mx-auto">
+                  <div className="w-[90%] md:w-[80%] mx-auto">
                     <div className="relative w-full">
                       <UploadImage
                         handleImageChange={handleImageChange}
@@ -211,7 +211,7 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
                         </div>
                       )}
                     </div>
-                    <div className="mt-4 flex justify-between items-center gap-3 2xl:gap-5">
+                    <div className="mt-4 flex flex-col md:flex-row justify-between items-center gap-3 2xl:gap-5">
                       <div
                         className={`w-full md:w-[60%] relative bg-[#ffffff20] text-primary rounded-[8px]`}
                       >
@@ -236,7 +236,7 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
                         />
                       </div>
                     </div>
-                    <div className="mt-4 flex justify-between items-center gap-3 2xl:gap-5">
+                    <div className="mt-4 flex flex-col md:flex-row justify-between items-center gap-3 2xl:gap-5">
                       <div
                         className={`w-full md:w-[60%] relative bg-[#ffffff20] text-primary rounded-[8px]`}
                       >
@@ -272,7 +272,7 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
                       )}
                       <button
                         onClick={handleAddItem}
-                        className="w-full py-2 2xl:py-3 rounded-md text-primary bg-[#ffffff20] border border-[#ffffff20] hover:bg-[#ffffff40] duration-300 cursor-pointer flex justify-center items-center"
+                        className="w-full py-2 2xl:py-3 rounded-md text-sm sm:text-base text-primary bg-[#ffffff20] border border-[#ffffff20] hover:bg-[#ffffff40] duration-300 cursor-pointer flex justify-center items-center"
                       >
                         {itemAddLoading ? (
                           <CircleLoader
@@ -289,7 +289,7 @@ const AddItemModal = ({ openModal, setModal }: Props) => {
                           setModal(false);
                           clearValues();
                         }}
-                        className="w-full  py-2 2xl:py-3 rounded-md text-primary bg-transparent border border-[#ffffff20] hover:bg-[#ffffff20] duration-300 cursor-pointer"
+                        className="w-full  py-2 2xl:py-3 rounded-md text-sm sm:text-base text-primary bg-transparent border border-[#ffffff20] hover:bg-[#ffffff20] duration-300 cursor-pointer"
                       >
                         Cancel
                       </button>

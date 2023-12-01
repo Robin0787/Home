@@ -7,6 +7,7 @@ import SideMenu from "../../components/sideMenu/SideMenu";
 
 const SmallDevice = () => {
   const [showSideMenu, setShowSideMenu] = useState(false);
+
   return (
     <section className="lg:hidden flex flex-col h-full w-full relative overflow-hidden space-y-2">
       <aside className="w-full h-[10%] flex justify-start items-center bg-white/10 text-primary overflow-hidden rounded-[12px] p-2">

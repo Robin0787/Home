@@ -35,7 +35,7 @@ const ListDropdown = ({
           <Listbox.Button
             className={`relative w-full text-left py-2 pl-3 pr-10 sm:text-sm`}
           >
-            <span className="block truncate text-primary capitalize">
+            <span className="block truncate text-sm sm:text-base text-primary capitalize">
               {selected ? selected : `Select ${title}`}
             </span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -56,9 +56,13 @@ const ListDropdown = ({
           >
             <Listbox.Options
               id="listScrollBar"
-              className={`absolute left-full ${
-                loading ? "-bottom-2" : `${bottom} max-h-44 2xl:max-h-64`
-              }  w-52 overflow-auto rounded-md bg-[#00000080] border border-[#ffffff50] text-base shadow-lg sm:text-sm`}
+              className={`absolute 
+              ${
+                loading
+                  ? "left-0 md:-bottom-2"
+                  : `md:left-full ${bottom} max-h-44 2xl:max-h-64`
+              }    
+              w-full md:w-52 overflow-auto rounded-md bg-[#00000080] border border-[#ffffff50] text-base shadow-lg sm:text-sm`}
             >
               {loading ? (
                 <CircleLoader loader={true} />

@@ -101,7 +101,7 @@ const AddCategoryModal = ({ openModal, setModal }: Props) => {
             >
               <Dialog.Panel
                 id="addItemModal"
-                className="transform h-full w-[80%] sm:w-[70%] md:w-[50%] lg:w-[35%] rounded-[14px] shadow-xl py-10"
+                className="transform h-full w-[85%] sm:w-[70%] md:w-[50%] lg:w-[35%] rounded-[14px] shadow-xl py-10"
               >
                 <div className="h-full text-center">
                   <div className="w-[80%] mx-auto">
@@ -136,7 +136,7 @@ const AddCategoryModal = ({ openModal, setModal }: Props) => {
                       )}
                       <button
                         onClick={handleAddCategory}
-                        className="w-full py-2 2xl:py-3 rounded-md text-primary bg-[#ffffff20] border border-[#ffffff20] hover:bg-[#ffffff40] duration-300 cursor-pointer flex justify-center items-center"
+                        className="w-full py-2 2xl:py-3 text-sm sm:text-base rounded-md text-primary bg-[#ffffff20] border border-[#ffffff20] hover:bg-[#ffffff40] duration-300 cursor-pointer flex justify-center items-center"
                       >
                         {categoryAddLoading ? (
                           <CircleLoader
