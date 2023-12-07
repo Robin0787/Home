@@ -36,7 +36,7 @@ const SingleItem = ({ item }: { item: Item }) => {
 
   return (
     <div
-      className="bg-white/10 rounded-[14px] relative group"
+      className="bg-[#ffffff10] rounded-[14px] relative group"
       onMouseLeave={() => {
         setShowEditBox(false);
       }}
